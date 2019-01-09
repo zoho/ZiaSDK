@@ -493,3 +493,7 @@ ziaCustomTheme.chatOnboardingWindow = ziaChatOnboardingWindow
 Zia.setChatTheme(object: ziaCustomTheme)
 
 ```
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
