@@ -30,11 +30,9 @@ LICENSE
 
 s.homepage     = "http://zoho.com"
 s.author       = { "Magesh Dharmalingam" => "magesh.d@zohocorp.com" }
-s.source       = { :http => "https://github.com/zoho/ZiaSDK/releases/download/untagged-88130a1cf027f2085bc2/ZiaSDK.framework.zip"}
+s.source       = { :http => "https://github.com/zoho/ZiaSDK/releases/download/0.0.8/ZiaSDK.framework.zip"}
 
 s.platform     = :ios
-s.requires_arc = true
-s.source_files  = 'ZiaSDK/**/*.{h,m,swift}'
 s.ios.deployment_target = '9.0'
-s.ios.vendored_frameworks = 'ZiaSDK'
+s.ios.vendored_frameworks = 'ZiaSDK.framework'
 end
