@@ -22,7 +22,7 @@ platform :ios, ’10.0'
 use_frameworks!
 
 target '<Your Target Name>' do
-    pod 'ZiaSDK', '~> 0.0.8’ 
+    pod 'ZiaSDK', '~> 0.0.9’ 
 end
 
 Then, run the following command:
@@ -59,7 +59,7 @@ ZiaSDK requires the following keys need to be add into info.plist
 *Implement the below method on application launch,*
 
 ```
-  Zia.intialize(withAuthHandler: ZiaHandler?, debugMode: .AutoDebug)
+  Zia.intialize(withAuthHandler: ZiaHandler?,portalID: String?, debugMode: .AutoDebug)
 
 ```
 
@@ -104,12 +104,10 @@ class ZiaAuthAdapter: ZiaHandler {
     
    //1.To handle the custom data from zia use the below method, return type is UIView(Client can handle the custom data and return view object)
 
-    override func handleZiaResponse(_ actionName: String?, data: 
-   [String : AnyObject], customViewWidth : CGFloat, processType : 
-   ZiaCustomViewProcessType) -> UIView? {
-
-     return nil
+    override func handleZiaResponse(_ actionName: String?, data: [String : AnyObject], customViewWidth: CGFloat, processType: ZiaCustomViewProcessType, completionHandler: @escaping (Bool, UIView?) -> ()) {
+        completionHandler(false,nil)
    }
+
 
 //OBSERVERS
 
@@ -309,16 +307,22 @@ Example:
 
 class ZiaAdapter: ZiaHandler {
     
-    override func handleZiaResponse(_ actionName: String?, data: [String : AnyObject], customViewWidth : CGFloat, processType : ZiaCustomViewProcessType) -> UIView?
-    {
-	 if let action = actionName,action == "callacustomer"
+   override func handleZiaResponse(_ actionName: String?, data: [String : AnyObject], customViewWidth: CGFloat, processType: ZiaCustomViewProcessType, completionHandler: @escaping (Bool, UIView?) -> ()) {
+
+        if processType != .ChatHistory{
+            print(actionName ?? "No Action Name")
+        }
+
+        if let action = actionName,action == "callacustomer_3"
         {
-            if llet record = data[“call_to"] as? [String : AnyObject],let number = record["number"] as? String
+            if let record = data["call_to"] as? [String : AnyObject],let number = record["number"] as? String
             {
-                Zia.muteZia() // Mute Zia When Handling the custom data
-                
+                Zia.muteZia()
+                completionHandler(false,nil)
+
+
                 DispatchQueue.main.async {
-                    
+
                     let phoneStr = "telprompt://\(number)"
                     UIApplication.shared.open(URL(string:phoneStr)!, options: [:], completionHandler: { (status) in
                         if status{
@@ -326,10 +330,13 @@ class ZiaAdapter: ZiaHandler {
                         }
                     })
                 }
+
+                return
             }
         }
-	return nil
-     }
+
+        completionHandler(false,nil)
+    }
 }
 
 ```
