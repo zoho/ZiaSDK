@@ -161,13 +161,6 @@ class ZiaAuthAdapter: ZiaHandler {
 | Live  | Production            |   
 | Local      |    Staging  |   
 
-*By default based on the build type ZIA will point to the below endpoint*
-
-| ZiaBuildType  | EndPoint  |   
-|---         |---           |
-| Live  | https://zia.zoho.com            |   
-| Local      |    https://zia.localzoho.com   |   
-
 *If you want to set the custom domain prefix, base domain, use the below API,*
 
 ```
