@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
 s.name         = "ZiaSDK"
-s.version      = "0.1.0"
+s.version      = "0.1.1"
 s.summary      = "Zia voice and chat SDK."
 s.license      = { :type => "MIT", :text => <<-LICENSE
 MIT License
@@ -30,7 +30,7 @@ LICENSE
 
 s.homepage     = "http://zoho.com"
 s.author       = { "Magesh Dharmalingam" => "magesh.d@zohocorp.com" }
-s.source       = { :http => "https://github.com/zoho/ZiaSDK/releases/download/0.1.0/ZiaSDK.framework.zip"}
+s.source       = { :http => "https://github.com/zoho/ZiaSDK/releases/download/0.1.1/ZiaSDK.framework.zip"}
 
 s.platform     = :ios
 s.ios.deployment_target = '9.0'
