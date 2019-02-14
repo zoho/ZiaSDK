@@ -16,8 +16,6 @@ Zia is an AI-driven platform written in swift for iOS, which uses NLP to solve b
 ```
 To integrate ZiaSDK into your Xcode project using CocoaPods, specify it in your Podfile:
 
-
-source 'https://git.csez.zohocorpin.com/zoho/zohopodspecs.git'
 platform :ios, ’10.0'
 use_frameworks!
 
